@@ -1,0 +1,174 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  UserID     Int         @id @default(autoincrement())
+  Name       String
+  Surname    String
+  Email      String      @unique
+  Password   String
+  Username   String?
+  Phone      String
+  Created_At DateTime    @default(now())
+  Client     Client[]
+  products   Product[]
+  Purchases  Purchases[]
+  Return     Return[]
+  Sale       Sale[]
+  Supplier   Supplier[]
+  Role       Role       @relation(fields: [RoleID], references: [RoleID])
+  RoleID     Int
+}
+
+model Role {
+  RoleID Int    @id @default(autoincrement())
+  Name   String @unique
+  Users  User[]
+}
+
+model Product {
+  ProductID         Int                @id @default(autoincrement())
+  ProductName       String
+  BarcodeNumber     String
+  Description       String?
+  SalePrice         Float
+  PurchasePrice     Float
+  StockType         String
+  Stok_Quantity     Int
+  SupplierID        Int?
+  Created_At        DateTime
+  Update_At         DateTime
+  UserID            Int
+  clientClientID    Int?
+  supplier          Supplier?          @relation(fields: [SupplierID], references: [SupplierID])
+  user              User               @relation(fields: [UserID], references: [UserID], onDelete: NoAction, onUpdate: NoAction)
+  Client            Client?            @relation(fields: [clientClientID], references: [ClientID])
+  purchases         Purchases[]
+  returns           Return[]
+  sales             Sale[]
+  stockLevels       StockLevel[]
+  stockTransactions StockTransaction[]
+}
+
+model Supplier {
+  SupplierID      Int         @id @default(autoincrement())
+  SupplierName    String
+  SupplierSurname String
+  Phone           String      @unique
+  Created_At      DateTime
+  Update_At       DateTime
+  Address         String
+  UserID          Int?
+  products        Product[]
+  purchases       Purchases[]
+  Return          Return[]
+  user            User?       @relation(fields: [UserID], references: [UserID], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Client {
+  ClientID      Int         @id @default(autoincrement())
+  ClientName    String
+  ClientSurname String
+  Phone         String      @unique
+  Address       String
+  UserID        Int
+  Created_At    DateTime
+  Update_At     DateTime
+  User          User        @relation(fields: [UserID], references: [UserID])
+  products      Product[]
+  Purchases     Purchases[]
+  Return        Return[]
+  Sale          Sale[]
+}
+
+model Purchases {
+  PurchasesId   Int      @id @default(autoincrement())
+  ProductID     Int
+  SupplierID    Int
+  Quantity      Int
+  Purchase_date DateTime
+  Total_amount  Float
+  UserID        Int
+  ClientID      Int?
+  client        Client?  @relation(fields: [ClientID], references: [ClientID], onDelete: Restrict)
+  product       Product  @relation(fields: [ProductID], references: [ProductID])
+  supplier      Supplier @relation(fields: [SupplierID], references: [SupplierID])
+  user          User     @relation(fields: [UserID], references: [UserID], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Sale {
+  SaleID      Int      @id @default(autoincrement())
+  ProductID   Int
+  SaleDate    DateTime
+  TotalAmount Float
+  UserID      Int
+  Quantity    Int
+  SaleType    String
+  ClientID    Int?
+  isActive    Boolean  @default(true)
+  returns     Return[]
+  product     Product  @relation(fields: [ProductID], references: [ProductID])
+  user        User     @relation(fields: [UserID], references: [UserID], onDelete: NoAction, onUpdate: NoAction)
+  client      Client?  @relation(fields: [ClientID], references: [ClientID], onDelete: Restrict)
+}
+
+model StockTransaction {
+  TransactionID   Int             @id @default(autoincrement())
+  ProductID       Int
+  TransactionType TransactionType
+  Quantity        Int
+  TransactionDate DateTime
+  Description     String?
+  product         Product         @relation(fields: [ProductID], references: [ProductID])
+}
+
+model Return {
+  ReturnID          Int       @id @default(autoincrement())
+  SaleID            Int
+  ProductID         Int
+  Quantity          Int
+  ReturnDate        DateTime
+  ReturnDescription String
+  UserID            Int
+  ReturnType        String?
+  TotalAmount       Int
+  ClientID          Int?      @default(1)
+  SupplierID        Int?
+  client            Client?   @relation(fields: [ClientID], references: [ClientID], onDelete: Restrict)
+  product           Product   @relation(fields: [ProductID], references: [ProductID])
+  sale              Sale      @relation(fields: [SaleID], references: [SaleID])
+  suplier           Supplier? @relation(fields: [SupplierID], references: [SupplierID], onDelete: Restrict, map: "Return_Supplier_fkey")
+  user              User      @relation(fields: [UserID], references: [UserID])
+}
+
+model StockLevel {
+  ID           Int      @id @default(autoincrement())
+  ProductID    Int
+  CurrentStock Int
+  LastUpdate   DateTime
+  product      Product  @relation(fields: [ProductID], references: [ProductID])
+}
+
+enum TransactionType {
+  IN
+  OUT
+}
+
+enum VerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}

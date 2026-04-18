@@ -1,0 +1,173 @@
+.footer-wrapper{
+width:100%;
+background:#ffffff;
+font-family:'Inter',sans-serif;
+color:#2e1065;
+}
+
+/* üst çizgi */
+
+.footer-top-bar{
+width:100%;
+height:5px;
+background:linear-gradient(90deg,#7c3aed,#a855f7,#c084fc);
+}
+
+/* content */
+
+.footer-content{
+max-width:1200px;
+margin:0 auto;
+padding:60px 40px 40px;
+
+display:grid;
+grid-template-columns:1fr 1fr 1fr 1.5fr;
+gap:40px;
+}
+
+@media(max-width:900px){
+.footer-content{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:500px){
+.footer-content{
+grid-template-columns:1fr;
+}
+}
+
+/* social */
+
+.footer-icons{
+display:flex;
+gap:14px;
+}
+
+.footer-icon{
+width:40px;
+height:40px;
+
+border-radius:10px;
+
+border:1.5px solid #c4b5fd;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:#7c3aed;
+
+background:#faf5ff;
+
+font-weight:700;
+
+text-decoration:none;
+
+transition:all .25s;
+}
+
+.footer-icon:hover{
+background:#7c3aed;
+color:white;
+transform:translateY(-3px);
+}
+
+/* columns */
+
+.footer-col-title{
+font-size:1rem;
+font-weight:800;
+color:#6d28d9;
+margin-bottom:18px;
+}
+
+.footer-links{
+list-style:none;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.footer-links a{
+font-size:.9rem;
+color:#6b21a8;
+text-decoration:none;
+}
+
+.footer-links a:hover{
+color:#a855f7;
+}
+
+/* brand */
+
+.footer-brand{
+display:flex;
+flex-direction:column;
+gap:16px;
+align-items:flex-end;
+text-align:right;
+}
+
+.footer-logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.footer-logo-icon{
+font-size:2rem;
+color:#7c3aed;
+font-weight:900;
+}
+
+.footer-logo-text{
+display:flex;
+flex-direction:column;
+line-height:1;
+}
+
+/* Arapça yazı */
+
+.footer-logo-ar{
+font-size:2rem;
+font-weight:900;
+color:#6d28d9;
+letter-spacing:2px;
+}
+
+/* FAZAA */
+
+.footer-logo-en{
+font-size:.9rem;
+letter-spacing:4px;
+font-weight:700;
+color:#a855f7;
+margin-top:2px;
+}
+
+.footer-logo-sub{
+font-size:.6rem;
+color:#a855f7;
+letter-spacing:3px;
+}
+
+.footer-desc{
+font-size:.9rem;
+color:#5b21b6;
+line-height:1.8;
+max-width:320px;
+}
+
+/* bottom */
+
+.footer-bottom{
+border-top:1px solid #ede9fe;
+padding:20px;
+text-align:center;
+}
+
+.footer-bottom span{
+font-size:.85rem;
+color:#7c3aed;
+}

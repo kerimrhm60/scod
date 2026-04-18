@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* SOL TARAF */
+.left {
+  flex: 1;
+  background: linear-gradient(135deg, #1a0033, #3a0066);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  color: white;
+  font-size: 80px;
+  font-weight: bold;
+}
+
+/* SAĞ TARAF */
+.right {
+  flex: 1;
+  background: linear-gradient(135deg, #2b0057, #6a00ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-box {
+  width: 350px;
+}
+
+.form-box h2 {
+  color: white;
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  color: #cfcfcf;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-group input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ffffff30;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #aaaaaa;
+}
+
+/* BUTON */
+.btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #7b2cff, #b84dff);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* ALT YAZI */
+.login-text {
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-text span {
+  color: #b84dff;
+  cursor: pointer;
+}

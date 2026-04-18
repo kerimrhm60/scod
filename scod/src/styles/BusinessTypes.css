@@ -1,0 +1,93 @@
+.bt-wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 70px 24px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+
+.bt-subtitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #a855f7;
+  margin-bottom: 12px;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+.bt-title {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 48px;
+}
+
+.bt-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .bt-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .bt-grid { grid-template-columns: 1fr; }
+}
+
+.bt-card {
+  position: relative;
+  height: 360px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-color: #1a1030;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bt-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(139, 92, 246, 0.35);
+}
+
+/* Koyu gradient overlay — altta yazı okunabilsin */
+.bt-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+.bt-card:hover .bt-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(109, 40, 217, 0.7) 0%,
+    rgba(0, 0, 0, 0.2) 60%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+}
+
+.bt-card-label {
+  position: relative;
+  z-index: 1;
+  padding: 20px 22px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.3px;
+}
